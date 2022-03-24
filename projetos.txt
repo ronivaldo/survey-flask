@@ -1,5 +1,5 @@
 1 - Esteira Sanitizante
-2 - Kits Educacionais
+2 - Genesis Robotec - Kits de Robotica Educacional
 3 - SmartLid
 4 - Dispositivos para telemetria de ambientes
 5 - Stream de dados via WEB (TIIA)
@@ -10,5 +10,4 @@
 10 - Irrigacao automatica com Arduino
 11 - Torneira automatica com sensor de presenca
 12 - Shift Light Progressivo
-13 - Respirador
-14 - Carrinho Bluetooth e um carro autonomo
+13 - Game and Spin (Jogo e Gira)

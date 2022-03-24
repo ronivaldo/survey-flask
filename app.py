@@ -32,7 +32,6 @@ def load_projetos():
     f = open('projetos.txt', 'r')
     for line in f.readlines():
         projetos.append(line.strip())
-    print(projetos)
 
 def ja_votou(telefone):
     df = pd.read_csv('votacao.csv')
@@ -52,17 +51,24 @@ def after_request(response):
 
 @app.route("/", methods=["GET"])
 def get_index():
+    global projetos
+    if projetos == []:
+        load_telefones()
+        load_projetos()
     return redirect("/form")
 
 @app.route("/form", methods=["GET"])
 def get_form():
+    global projetos
+    if projetos == []:
+        load_telefones()
+        load_projetos()
     return render_template("form.html", projects=projetos)
 
 @app.route("/form", methods=["POST"])
 def post_form():
 
     telefone = request.form.get("telefone")
-    print(telefone)
     telefone = fix_telefone(telefone)
     if telefone == "":
         return render_template("error.html", message=f"Preencha o Telefone. Apenas telefones cadastrados nos ingressos do Arduino Day podem ser utilizados.")
@@ -72,10 +78,9 @@ def post_form():
 
     if ja_votou(telefone):
         return render_template("error.html", message=f"Telefone {telefone} já votou. Apenas é permitido um voto por telefone cadastrado.")
-        
+
 
     projeto = request.form.get("projeto")
-    print(projeto)
     if projeto == "" or projeto is None:
         return render_template("error.html", message=f"Escolha um projeto.")
 
@@ -96,16 +101,6 @@ def get_sheet():
     return tableAppend("")
 
 def tableAppend(success):
-    surveys = []
-    file = open("survey.csv")
-    for line in file:
-        if line == "\n" or line == "":
-            continue
-
-        surveys.append(line.split(","))
-
-    file.close()
-
     df = pd.read_csv('votacao.csv')
     df['projeto'].value_counts()
 
@@ -113,8 +108,6 @@ def tableAppend(success):
     return render_template("sheet.html", classificados=classificados,message=success)
 
 
+if __name__ == '__main__':
+    app.run(debug=True)
 
-load_telefones()
-load_projetos()
-
-app.run(host='0.0.0.0', debug=True)

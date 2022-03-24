@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+
+{% block main %}
+
+    <!-- http://getbootstrap.com/docs/4.1/components/alerts/ -->
+    <h1 class="mb-3">ARDUINO DAY FORTALEZA - 2022</h1>
+
+    <h2 class="mb-3">Classificação do Melhor Expositor</h2>
+
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Projeto</th>
+              <th scope="col">Quantidade de Votos</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for key in classificados %}
+              <tr>
+                  <td class="name">{{ key }}</td>
+                  <td class="satisfaction">{{ classificados[key] }}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+</table>
+{% endblock %}

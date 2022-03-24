@@ -1,0 +1,14 @@
+1 - Esteira Sanitizante
+2 - Kits Educacionais
+3 - SmartLid
+4 - Dispositivos para telemetria de ambientes
+5 - Stream de dados via WEB (TIIA)
+6 - Carrinho Bluetooth
+7 - Zoy STEAM - Robos educacionais
+8 - Robo Pendulo Invertido / Sallen-Key-Duino
+9 - Placas CLP e learning board
+10 - Irrigacao automatica com Arduino
+11 - Torneira automatica com sensor de presenca
+12 - Shift Light Progressivo
+13 - Respirador
+14 - Carrinho Bluetooth e um carro autonomo

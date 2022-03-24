@@ -1,0 +1,71 @@
+{% extends "layout.html" %}
+
+{% block main %}
+
+    <div class="">
+        <!-- http://getbootstrap.com/docs/4.1/content/typography/ -->
+        <h1 class="mb-3">ARDUINO DAY FORTALEZA - 2022</h1>
+
+        <h2 class="mb-3">Votação do Melhor Expositor</h2>
+
+        <!-- http://getbootstrap.com/docs/4.1/components/forms/ -->
+        <form action="/form" method="post" id="myForm">
+
+            <!-- TODO -->
+                <div class="mt-3 mb-3 form-width form-group">
+                    <h5>Seu Telefone</h5>
+                    <input type="text" id="telefone" name="telefone" onkeypress="mask(this, mphone);" onblur="mask(this, mphone);" placeholder="(85)99999-9999"/>
+
+                </div>
+
+                <div class="mt-3 mb-3 form-group">
+                    <h5>Melhor Projeto</h5>
+
+                    <!-- For loop logic of jinja template -->
+{%for project in projects %}
+
+<div class="radio">
+    <label><input id="radio-{{loop.index}}" type="radio" name="projeto" value="{{project}}" > {{project}}</label>
+</div>
+{%endfor%}
+
+                </div>
+
+
+                <!-- http://getbootstrap.com/docs/4.1/components/buttons/ -->
+                <div id="fail"></div>
+                <button class="btn btn-primary form-width btn-dark" onclick="">Enviar</button>
+
+        </form>
+
+    </div>
+
+    <script>
+function mask(o, f) {
+  setTimeout(function() {
+    var v = mphone(o.value);
+    if (v != o.value) {
+      o.value = v;
+    }
+  }, 1);
+}
+
+function mphone(v) {
+  var r = v.replace(/\D/g, "");
+  r = r.replace(/^0/, "");
+  if (r.length > 10) {
+    r = r.replace(/^(\d\d)(\d{5})(\d{4}).*/, "($1) $2-$3");
+  } else if (r.length > 5) {
+    r = r.replace(/^(\d\d)(\d{4})(\d{0,4}).*/, "($1) $2-$3");
+  } else if (r.length > 2) {
+    r = r.replace(/^(\d\d)(\d{0,5})/, "($1) $2");
+  } else {
+    r = r.replace(/^(\d*)/, "($1");
+  }
+  return r;
+}        
+    </script>
+
+
+
+{% endblock %}
